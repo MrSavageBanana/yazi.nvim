@@ -44,18 +44,18 @@ local plugins = {
     keys = {
       {
         "<leader>-",
-        "<cmd>Yazi<cr>",
+        "<cmd>yazi<cr>",
         desc = "Open yazi at the current file",
       },
       {
         -- Open in the current working directory
         "<leader>cw",
-        "<cmd>Yazi cwd<cr>",
+        "<cmd>yazi cwd<cr>",
         desc = "Open the file manager in nvim's working directory",
       },
       {
         "<c-up>",
-        "<cmd>Yazi toggle<cr>",
+        "<cmd>yazi toggle<cr>",
         desc = "Resume the last yazi session",
       },
     },
