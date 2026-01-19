@@ -35,16 +35,16 @@ function M.create_yazi_commands()
     -- If the user pass an non existing subcommand
     if not subcommand then
       vim.notify(
-        "`:Yazi "
+        "`:yazi "
           .. subcommand_key
           .. "` command does not exist."
           .. "\nUse any of the next instead:"
-          .. "\n  * `:Yazi`"
-          .. "\n  * `:Yazi cwd`"
-          .. "\n  * `:Yazi toggle`"
-          .. "\n  * `:Yazi logs`",
+          .. "\n  * `:yazi`"
+          .. "\n  * `:yazi cwd`"
+          .. "\n  * `:yazi toggle`"
+          .. "\n  * `:yazi logs`",
         vim.log.levels.ERROR,
-        { title = "Yazi.nvim" }
+        { title = "yazi.nvim" }
       )
       return
     end
@@ -52,13 +52,13 @@ function M.create_yazi_commands()
     subcommand.impl()
   end
 
-  vim.api.nvim_create_user_command("Yazi", yazi_cmd, {
+  vim.api.nvim_create_user_command("yazi", yazi_cmd, {
     nargs = "*", -- Allow no arguments or multiple arguments
-    desc = "Valid yazi commands are `Yazi`, `Yazi cwd`, `Yazi toggle`, `Yazi logs`",
+    desc = "Valid yazi commands are `yazi`, `yazi cwd`, `yazi toggle`, `yazi logs`",
     complete = function(arg_lead, cmdline, _)
       -- Get the subcommand.
       local subcmd_key, subcmd_arg_lead =
-        cmdline:match("^['<,'>]*Yazi[!]*%s(%S+)%s(.*)$")
+        cmdline:match("^['<,'>]*yazi[!]*%s(%S+)%s(.*)$")
       if
         subcmd_key
         and subcmd_arg_lead
@@ -69,7 +69,7 @@ function M.create_yazi_commands()
         return subcommand_tbl[subcmd_key].complete(subcmd_arg_lead)
       end
       -- Check if cmdline is a subcommand
-      if cmdline:match("^['<,'>]*Yazi[!]*%s+%w*$") then
+      if cmdline:match("^['<,'>]*yazi[!]*%s+%w*$") then
         -- Filter subcommands that match
         local subcommand_keys = vim.tbl_keys(subcommand_tbl)
         return vim
